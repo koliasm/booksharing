@@ -16,6 +16,9 @@ class Author(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
@@ -36,3 +39,6 @@ class Book(models.Model):
         on_delete=models.SET_NULL,
         related_name="borrowed_books",
     )
+
+    def __str__(self):
+        return f"{self.title} - {self.author}"
