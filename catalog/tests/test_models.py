@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from catalog.models import Author, Tag, Book
 
-class ModelTest(TestCase):
+class ModelTestStr(TestCase):
     def test_user_str(self):
         user = get_user_model().objects.create_user(
             username="username",
@@ -13,8 +13,8 @@ class ModelTest(TestCase):
         )
         self.assertEqual(
             str(user),
-            f"{user.first_name} {user.last_name} ({user.username}). "
-            f"Telegram: @{user.telegram_tag}")
+            f"{user.first_name} {user.last_name} "
+            f"@{user.telegram_tag}")
 
     def test_author_str(self):
         author = Author.objects.create(
@@ -25,6 +25,16 @@ class ModelTest(TestCase):
             str(author),
             f"{author.first_name} {author.last_name}"
         )
+
+    def test_tag_str(self):
+        tag = Tag.objects.create(
+            name="Fiction",
+        )
+        self.assertEqual(
+            str(tag),
+            f"{tag.name}"
+        )
+
 
     def test_book_str(self):
         owner = get_user_model().objects.create_user(

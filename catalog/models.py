@@ -8,8 +8,8 @@ class User(AbstractUser):
     telegram_tag = models.CharField(max_length=255)
 
     def __str__(self):
-        return (f"{self.first_name} {self.last_name} ({self.username}). "
-                f"Telegram: @{self.telegram_tag}")
+        return (f"{self.first_name} {self.last_name} "
+                f"@{self.telegram_tag}")
 
 
 class Author(models.Model):
@@ -22,6 +22,9 @@ class Author(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Book(models.Model):
